@@ -1,0 +1,29 @@
+<svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="250" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">换手率解析</text>
+  
+  <!-- Main formula -->
+  <rect x="50" y="50" width="400" height="50" rx="8" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" />
+  <text x="250" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0D47A1">换手率 = (成交量 ÷ 流通股本) × 100%</text>
+  
+  <!-- Visualization -->
+  <rect x="120" y="120" width="260" height="60" rx="8" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1" />
+  
+  <!-- Trading volume icon -->
+  <rect x="140" y="135" width="30" height="30" rx="3" fill="#2196F3" />
+  <text x="155" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">成交</text>
+  
+  <!-- Division symbol -->
+  <text x="185" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#616161">÷</text>
+  
+  <!-- Total shares icon -->
+  <rect x="200" y="135" width="70" height="30" rx="3" fill="#64B5F6" />
+  <text x="235" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">流通股本</text>
+  
+  <!-- Multiplication symbol -->
+  <text x="285" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#616161">×</text>
+  
+  <!-- Percentage -->
+  <rect x="310" y="135" width="30" height="30" rx="3" fill="#1565C0" />
+  <text x="325" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">%</text>
+</svg>

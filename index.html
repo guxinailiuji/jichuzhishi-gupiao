@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>股票基本面分析全指南 by 不霁何虹</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <style>
+        @keyframes highlight-pulse {
+            0% { box-shadow: 0 0 5px 2px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.7); }
+            100% { box-shadow: 0 0 5px 2px rgba(59, 130, 246, 0.4); }
+        }
+        .section-highlight {
+            animation: highlight-pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        .section-highlight:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 导航菜单高亮效果 */
+        .nav-active {
+            font-weight: 600;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 板块活跃状态高亮效果 */
+        @keyframes highlight-active {
+            0% { box-shadow: 0 0 10px 5px var(--active-color, rgba(239, 68, 68, 0.6)); }
+            50% { box-shadow: 0 0 20px 10px var(--active-color, rgba(239, 68, 68, 0.8)); }
+            100% { box-shadow: 0 0 10px 5px var(--active-color, rgba(239, 68, 68, 0.6)); }
+        }
+        .active-section {
+            animation: highlight-active 1s infinite !important;
+            transform: translateY(-10px);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <header class="bg-black text-white p-6 shadow-sm">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold mb-2">股票基本面分析全指南 by 不霁何虹</h1>
+            <p class="text-gray-300">从入门到精通的系统学习路径</p>
+        </div>
+    </header>
+    
+    <nav class="bg-gray-100 border-b border-gray-200 sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-2">
+            <ul class="flex flex-wrap space-x-1 md:space-x-6 text-sm">
+                <li><a href="#intro" class="px-3 py-2 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 inline-flex items-center transition-all"><i data-lucide="home" class="w-4 h-4 mr-1 text-gray-700"></i>概述</a></li>
+                <li><a href="#fundamental" class="px-3 py-2 rounded-md bg-blue-100 text-blue-800 hover:bg-blue-200 inline-flex items-center transition-all"><i data-lucide="building" class="w-4 h-4 mr-1 text-blue-700"></i>基本面</a></li>
+                <li><a href="#financial" class="px-3 py-2 rounded-md bg-green-100 text-green-800 hover:bg-green-200 inline-flex items-center transition-all"><i data-lucide="file-text" class="w-4 h-4 mr-1 text-green-700"></i>财务报表</a></li>
+                <li><a href="#ratios" class="px-3 py-2 rounded-md bg-yellow-100 text-yellow-800 hover:bg-yellow-200 inline-flex items-center transition-all"><i data-lucide="percent" class="w-4 h-4 mr-1 text-yellow-700"></i>关键指标</a></li>
+                <li><a href="#sectors" class="px-3 py-2 rounded-md bg-purple-100 text-purple-800 hover:bg-purple-200 inline-flex items-center transition-all"><i data-lucide="layers" class="w-4 h-4 mr-1 text-purple-700"></i>板块分析</a></li>
+                <li><a href="#framework" class="px-3 py-2 rounded-md bg-indigo-100 text-indigo-800 hover:bg-indigo-200 inline-flex items-center transition-all"><i data-lucide="workflow" class="w-4 h-4 mr-1 text-indigo-700"></i>分析框架</a></li>
+                <li><a href="#beginners" class="px-3 py-2 rounded-md bg-cyan-100 text-cyan-800 hover:bg-cyan-200 inline-flex items-center transition-all"><i data-lucide="graduation-cap" class="w-4 h-4 mr-1 text-cyan-700"></i>入门指南</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <section id="intro" class="mb-16">
+            <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 shadow-sm border border-gray-200 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="info" class="w-6 h-6 mr-2 text-blue-600"></i>
+                    股票基本面分析概述
+                </h2>
+                <p class="mb-4 text-gray-700">基本面分析是一种评估公司实际价值的方法，通过分析公司的财务数据、运营模式、行业状况和经济环境，确定公司的内在价值。它帮助投资者判断股票是否被高估或低估，是价值投资的核心。</p>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm my-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">基本面分析与技术分析的区别</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">比较维度</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">基本面分析</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">技术分析</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">分析对象</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">公司财务状况、行业前景、竞争优势等</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">市场价格、交易量、走势图形</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">分析方法</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">财务报表分析、行业分析、竞争分析</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">图表分析、形态识别、指标计算</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">时间视角</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">长期、面向未来</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">短期、基于历史模式</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">核心假设</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">价格最终会反映价值</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">历史会重复，价格走势有规律</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">适用场景</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">价值投资、长期持有</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">短线交易、波段操作</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 my-8">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-blue-600 rounded-full p-2 mr-2">
+                                <i data-lucide="globe" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-blue-800">宏观经济分析</h4>
+                        </div>
+                        <p class="text-sm text-blue-700">评估GDP增长率、通胀率、利率等</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-green-600 rounded-full p-2 mr-2">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-green-800">行业分析</h4>
+                        </div>
+                        <p class="text-sm text-green-700">研究行业发展趋势、市场规模、竞争格局</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-yellow-600 rounded-full p-2 mr-2">
+                                <i data-lucide="building" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-yellow-800">公司分析</h4>
+                        </div>
+                        <p class="text-sm text-yellow-700">包括定性分析和定量分析</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-purple-600 rounded-full p-2 mr-2">
+                                <i data-lucide="calculator" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-purple-800">估值分析</h4>
+                        </div>
+                        <p class="text-sm text-purple-700">确定公司合理价值范围</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-red-600 rounded-full p-2 mr-2">
+                                <i data-lucide="target" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h4 class="font-semibold text-red-800">投资决策</h4>
+                        </div>
+                        <p class="text-sm text-red-700">基于分析结果做出买入、持有或卖出决策</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fundamental" class="mb-16">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-sm border border-blue-100 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="building" class="w-6 h-6 mr-2 text-blue-600"></i>
+                    公司基本面分析
+                </h2>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800">什么是公司基本面</h3>
+                    <p class="mb-4 text-gray-700">公司基本面是指影响公司价值和未来发展的各种因素，包括财务状况、经营模式、市场地位、行业环境、管理团队等。基本面分析通过评估这些因素来确定公司的内在价值和投资潜力。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="bar-chart-2" class="w-5 h-5 mr-2 text-blue-600"></i>
+                                定量分析
+                            </h4>
+                            <p class="text-sm text-gray-700">
+                                关注数字化指标，依赖于公司的财务报表和数据：
+                                <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                    <li>损益表数据分析</li>
+                                    <li>资产负债表分析</li>
+                                    <li>现金流量分析</li>
+                                    <li>财务比率计算</li>
+                                    <li>历史业绩趋势</li>
+                                </ul>
+                            </p>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="users" class="w-5 h-5 mr-2 text-blue-600"></i>
+                                定性分析
+                            </h4>
+                            <p class="text-sm text-gray-700">
+                                评估难以量化的因素：
+                                <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                    <li>品牌价值与市场地位</li>
+                                    <li>企业商业模式可持续性</li>
+                                    <li>核心竞争优势</li>
+                                    <li>管理团队能力</li>
+                                    <li>公司治理结构</li>
+                                    <li>行业前景与发展趋势</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800">基本面分析核心要素</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 border-l-4 border-blue-500 bg-blue-50 rounded-r-lg">
+                            <h4 class="font-semibold text-blue-800 mb-1">盈利能力</h4>
+                            <p class="text-sm text-gray-700">评估公司创造利润的能力，关注毛利率、净利率、ROE、ROA等指标</p>
+                        </div>
+                        
+                        <div class="p-4 border-l-4 border-green-500 bg-green-50 rounded-r-lg">
+                            <h4 class="font-semibold text-green-800 mb-1">成长性</h4>
+                            <p class="text-sm text-gray-700">分析收入增长率、利润增长率、市场份额变化等，预测未来发展空间</p>
+                        </div>
+                        
+                        <div class="p-4 border-l-4 border-yellow-500 bg-yellow-50 rounded-r-lg">
+                            <h4 class="font-semibold text-yellow-800 mb-1">财务健康度</h4>
+                            <p class="text-sm text-gray-700">检查资产负债结构、偿债能力、现金流状况，评估财务风险</p>
+                        </div>
+                        
+                        <div class="p-4 border-l-4 border-purple-500 bg-purple-50 rounded-r-lg">
+                            <h4 class="font-semibold text-purple-800 mb-1">行业地位</h4>
+                            <p class="text-sm text-gray-700">分析市场份额、竞争格局、议价能力、行业壁垒等因素</p>
+                        </div>
+                        
+                        <div class="p-4 border-l-4 border-red-500 bg-red-50 rounded-r-lg">
+                            <h4 class="font-semibold text-red-800 mb-1">管理质量</h4>
+                            <p class="text-sm text-gray-700">评价管理团队的经验、诚信度、战略眼光和执行力</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="financial" class="mb-16">
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 shadow-sm border border-green-100 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="file-text" class="w-6 h-6 mr-2 text-green-600"></i>
+                    财务报表解读
+                </h2>
+                
+                <img src="financial-report.svg" alt="财务报表三大组成部分" class="w-full max-w-2xl mx-auto mb-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-600 rounded-full p-2 mr-3">
+                                <i data-lucide="scale" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-800">资产负债表</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">反映特定日期的财务状况，是企业资产、负债和所有者权益的静态"快照"。</p>
+                        <div class="bg-green-50 p-3 rounded-lg text-sm text-green-800 font-medium">
+                            核心公式：资产 = 负债 + 所有者权益
+                        </div>
+                        
+                        <h4 class="font-semibold mt-4 mb-2 text-gray-800">主要组成部分：</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="bg-green-100 text-green-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">流动资产：</span>现金、应收账款、存货等
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-100 text-green-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">非流动资产：</span>固定资产、无形资产等
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-100 text-green-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">流动负债：</span>短期借款、应付账款
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-100 text-green-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">非流动负债：</span>长期借款、债券
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-green-100 text-green-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">所有者权益：</span>股本、资本公积、未分配利润等
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-orange-600 rounded-full p-2 mr-3">
+                                <i data-lucide="bar-chart-3" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-orange-800">利润表</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">反映一定期间的经营成果，展示公司的收入、成本、费用和利润情况。</p>
+                        <div class="bg-orange-50 p-3 rounded-lg text-sm text-orange-800 font-medium">
+                            核心公式：净利润 = 收入 - 成本 - 费用 - 税金
+                        </div>
+                        
+                        <h4 class="font-semibold mt-4 mb-2 text-gray-800">主要组成部分：</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="bg-orange-100 text-orange-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">营业收入：</span>销售商品、提供服务获取的收入
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-orange-100 text-orange-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">营业成本：</span>销售商品、提供服务的直接成本
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-orange-100 text-orange-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">毛利润：</span>营业收入减去营业成本
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-orange-100 text-orange-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">期间费用：</span>销售/管理/财务/研发费用
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-orange-100 text-orange-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">净利润：</span>最终盈利结果
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 rounded-full p-2 mr-3">
+                                <i data-lucide="waves" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-blue-800">现金流量表</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-3">反映现金流入和流出状况，展示公司的现金产生和使用情况。</p>
+                        <div class="bg-blue-50 p-3 rounded-lg text-sm text-blue-800 font-medium">
+                            核心关注：经营活动现金流为正且稳定
+                        </div>
+                        
+                        <h4 class="font-semibold mt-4 mb-2 text-gray-800">主要组成部分：</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="bg-blue-100 text-blue-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">经营活动现金流：</span>核心业务产生的现金
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-100 text-blue-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">投资活动现金流：</span>购建资产、收购投资的现金流
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-100 text-blue-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">筹资活动现金流：</span>融资、分红、偿债的现金流
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-100 text-blue-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">现金净增加额：</span>期末与期初现金差额
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-100 text-blue-800 font-medium rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">•</span>
+                                <div>
+                                    <span class="font-medium">期末现金余额：</span>期末可用现金总量
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-green-800">财务报表分析技巧</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="arrow-up-right" class="w-4 h-4 mr-1 text-green-600"></i>
+                                趋势分析
+                            </h4>
+                            <p class="text-xs text-gray-600">关注指标变化趋势比绝对数值更重要</p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="pie-chart" class="w-4 h-4 mr-1 text-green-600"></i>
+                                结构分析
+                            </h4>
+                            <p class="text-xs text-gray-600">分析各项目占总额的比例</p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="bar-chart-horizontal" class="w-4 h-4 mr-1 text-green-600"></i>
+                                同业比较
+                            </h4>
+                            <p class="text-xs text-gray-600">与行业平均水平和标杆企业对比</p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="search" class="w-4 h-4 mr-1 text-green-600"></i>
+                                关注异常
+                            </h4>
+                            <p class="text-xs text-gray-600">注意数据异常变动，挖掘背后原因</p>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i data-lucide="clipboard-list" class="w-4 h-4 mr-1 text-green-600"></i>
+                                重视附注
+                            </h4>
+                            <p class="text-xs text-gray-600">财务报表附注包含关键解释信息</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2 flex items-center">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 mr-2"></i>
+                            财务报表分析的注意事项
+                        </h4>
+                        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li>不同行业的财务特点差异明显，需要进行行业针对性分析</li>
+                            <li>需要关注财务数据的连续性和一致性，防止被操纵的财务数据误导</li>
+                            <li>单一指标不足以全面反映公司状况，需要综合多维度分析</li>
+                            <li>财务报表反映的是过去情况，预测未来还需结合公司战略和行业前景</li>
+                            <li>留意非经常性损益的影响，关注扣非后的真实盈利能力</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ratios" class="mb-16">
+            <div class="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl p-8 shadow-sm border border-yellow-100 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="percent" class="w-6 h-6 mr-2 text-yellow-600"></i>
+                    关键财务指标分析
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-600 rounded-full p-2 mr-3">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-yellow-800">市盈率(P/E)</h3>
+                        </div>
+                        
+                        <img src="pe-ratio.svg" alt="市盈率图解" class="w-full mb-4">
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">定义与计算</h4>
+                            <p class="text-sm text-gray-700">市盈率是每股市价与每股盈利的比率，反映投资者愿意为每1元收益支付的价格。</p>
+                            <div class="bg-yellow-50 p-3 rounded-lg text-sm text-yellow-800 font-medium mt-2">
+                                计算公式：市盈率(P/E) = 股票价格 ÷ 每股收益(EPS)
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">市盈率类型</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">静态市盈率</h5>
+                                    <p class="text-xs text-gray-600 mt-1">使用过去一年的每股收益计算，是市场广泛谈及的市盈率</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">动态市盈率</h5>
+                                    <p class="text-xs text-gray-600 mt-1">考虑了未来盈利的变化，使用预测每股收益计算</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">市盈率的解读参考</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">市盈率区间</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">一般解读</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">&lt; 0</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">公司亏损，不适用市盈率分析</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">0-10</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">可能存在投资机会，但需警惕经营风险</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">11-20</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">相对合理的估值区间</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">21-30</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">估值偏高，需关注成长性支撑</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">31-50</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">高估值，需有高成长性支撑</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">&gt; 50</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">极高估值，存在较大投资风险</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">*注意：不同行业的合理市盈率水平差异较大，需要与同行业平均水平对比。高成长性行业（如科技、医药）通常具有较高的市盈率。</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">使用注意事项</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>市盈率低不一定意味着价值被低估，可能反映市场对公司前景的悲观预期</li>
+                                <li>高增长企业通常有较高市盈率</li>
+                                <li>需要结合行业特点、成长性和其他财务指标综合分析</li>
+                                <li>亏损企业不适用市盈率分析</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 rounded-full p-2 mr-3">
+                                <i data-lucide="refresh-cw" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-blue-800">换手率</h3>
+                        </div>
+                        
+                        <img src="turnover-rate.svg" alt="换手率图解" class="w-full mb-4">
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">定义与计算</h4>
+                            <p class="text-sm text-gray-700">换手率是衡量股票在一定时期内转手买卖频率的指标，反映股票的活跃度和流通性。</p>
+                            <div class="bg-blue-50 p-3 rounded-lg text-sm text-blue-800 font-medium mt-2">
+                                计算公式：换手率 = (成交量 ÷ 流通股本) × 100%
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">换手率分析参考</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">日换手率</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">一般情况分析</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">1%-2.5%</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">正常交易水平</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">3%-7%</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">相对活跃状态</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">7%-10%</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">强势股，高度活跃</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">10%-15%</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">可能有大资金密集操作</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">&gt; 15%</td>
+                                            <td class="px-3 py-2 whitespace-nowrap text-sm text-gray-700">极度活跃，潜在爆发股</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">换手率的影响因素</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">交易方式</h5>
+                                    <p class="text-xs text-gray-600 mt-1">交易技术进步和功能增强会提高换手率</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">交收期</h5>
+                                    <p class="text-xs text-gray-600 mt-1">交收期越短，换手率越高</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">投资者结构</h5>
+                                    <p class="text-xs text-gray-600 mt-1">散户为主的市场换手率通常较高</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-800 text-sm">市场类型</h5>
+                                    <p class="text-xs text-gray-600 mt-1">新兴市场通常换手率高于成熟市场</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">换手率的投资应用</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                    <span><strong>高位高换手：</strong>可能是获利盘套现，股价可能下跌</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                    <span><strong>低位放量：</strong>新资金可能在进场，未来可能上涨</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                    <span><strong>持续高换手：</strong>主力可能在洗盘，需关注股价变化方向</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                    <span><strong>突然放量：</strong>可能有重大消息或事件影响</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mt-8">
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800">其他重要财务指标一览</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-3">盈利能力指标</h4>
+                            <ul class="space-y-3">
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">净资产收益率(ROE)</div>
+                                    <div class="text-xs text-gray-600 mt-1">衡量股东权益的回报率，反映企业利用股东资金创造利润的能力</div>
+                                    <div class="text-xs font-medium text-blue-700 mt-1">ROE = 净利润 ÷ 平均股东权益 × 100%</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">总资产收益率(ROA)</div>
+                                    <div class="text-xs text-gray-600 mt-1">衡量企业利用资产创造利润的能力</div>
+                                    <div class="text-xs font-medium text-blue-700 mt-1">ROA = 净利润 ÷ 平均总资产 × 100%</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">毛利率</div>
+                                    <div class="text-xs text-gray-600 mt-1">反映产品定价能力和成本控制能力</div>
+                                    <div class="text-xs font-medium text-blue-700 mt-1">毛利率 = (营业收入 - 营业成本) ÷ 营业收入 × 100%</div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-3">偿债能力指标</h4>
+                            <ul class="space-y-3">
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">资产负债率</div>
+                                    <div class="text-xs text-gray-600 mt-1">反映企业负债水平和风险状况</div>
+                                    <div class="text-xs font-medium text-green-700 mt-1">资产负债率 = 总负债 ÷ 总资产 × 100%</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">流动比率</div>
+                                    <div class="text-xs text-gray-600 mt-1">衡量企业短期偿债能力</div>
+                                    <div class="text-xs font-medium text-green-700 mt-1">流动比率 = 流动资产 ÷ 流动负债</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">速动比率</div>
+                                    <div class="text-xs text-gray-600 mt-1">更严格地衡量企业短期偿债能力</div>
+                                    <div class="text-xs font-medium text-green-700 mt-1">速动比率 = (流动资产 - 存货) ÷ 流动负债</div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-800 mb-3">估值指标</h4>
+                            <ul class="space-y-3">
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">市净率(P/B)</div>
+                                    <div class="text-xs text-gray-600 mt-1">股票价格与每股净资产的比率</div>
+                                    <div class="text-xs font-medium text-purple-700 mt-1">P/B = 股票价格 ÷ 每股净资产</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">市销率(P/S)</div>
+                                    <div class="text-xs text-gray-600 mt-1">股票价格与每股销售额的比率</div>
+                                    <div class="text-xs font-medium text-purple-700 mt-1">P/S = 股票价格 ÷ 每股销售额</div>
+                                </li>
+                                <li class="bg-white p-3 rounded shadow-sm">
+                                    <div class="font-medium text-gray-800">股息收益率</div>
+                                    <div class="text-xs text-gray-600 mt-1">年度股息与股票价格的比率</div>
+                                    <div class="text-xs font-medium text-purple-700 mt-1">股息收益率 = 年度股息 ÷ 股票价格 × 100%</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sectors" class="mb-16">
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-8 shadow-sm border border-purple-100 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="layers" class="w-6 h-6 mr-2 text-purple-600"></i>
+                    股票板块分析
+                </h2>
+                
+                <img src="stock-board.svg" alt="股票板块分类" class="w-full max-w-2xl mx-auto mb-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 rounded-full p-2 mr-3">
+                                <i data-lucide="workflow" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-purple-800">行业板块</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">根据上市公司的业务性质和产品服务类型进行分类。</p>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">主要行业板块</h4>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">农林牧渔</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">采矿业</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">制造业</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">金融业</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">建筑业</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">信息技术</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">医药卫生</div>
+                            <div class="p-2 bg-purple-50 rounded-lg text-sm text-purple-800 text-center">房地产</div>
+                        </div>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">投资参考</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>不同行业周期不同，对宏观经济变化的敏感度也不同</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>周期性行业（如原材料、能源）与经济周期高度相关</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>防御性行业（如医药、消费必需品）抗风险能力较强</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 rounded-full p-2 mr-3">
+                                <i data-lucide="map" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-blue-800">地域板块</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">根据上市公司的地理位置和所在区域进行分类。</p>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">主要地域板块</h4>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">北京</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">上海</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">广东</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">江苏</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">浙江</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">深圳</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">香港</div>
+                            <div class="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 text-center">大湾区</div>
+                        </div>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">投资参考</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span>各地区经济政策和发展重点不同，产业集群特点明显</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span>重要区域政策（如自贸区、雄安新区）会带动相关地域板块</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span>关注区域协同发展战略，如粤港澳大湾区、长三角一体化</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-600 rounded-full p-2 mr-3">
+                                <i data-lucide="lightbulb" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-800">概念板块</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">根据上市公司的某些特定属性、题材或共同要素进行分类。</p>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">热门概念板块</h4>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">新能源</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">芯片</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">人工智能</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">大数据</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">元宇宙</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">碳中和</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">军工</div>
+                            <div class="p-2 bg-green-50 rounded-lg text-sm text-green-800 text-center">养老产业</div>
+                        </div>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">投资参考</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">•</span>
+                                <span>概念板块往往是资金炒作的热点，波动较大</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">•</span>
+                                <span>关注政策导向和技术创新推动的新兴概念</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">•</span>
+                                <span>区分真成长与伪成长，评估公司在概念中的真实份量</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-800">板块分析的投资应用</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="p-4 bg-purple-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-purple-800 mb-2 flex items-center text-sm">
+                                <i data-lucide="rotate-cw" class="w-4 h-4 mr-1"></i>
+                                把握热点轮动
+                            </h4>
+                            <p class="text-xs text-gray-700">识别资金流向，提前布局未来热点板块</p>
+                        </div>
+                        
+                        <div class="p-4 bg-purple-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-purple-800 mb-2 flex items-center text-sm">
+                                <i data-lucide="filter" class="w-4 h-4 mr-1"></i>
+                                降低选股难度
+                            </h4>
+                            <p class="text-xs text-gray-700">先选优质板块，再在板块内选优质个股</p>
+                        </div>
+                        
+                        <div class="p-4 bg-purple-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-purple-800 mb-2 flex items-center text-sm">
+                                <i data-lucide="pie-chart" class="w-4 h-4 mr-1"></i>
+                                风险分散
+                            </h4>
+                            <p class="text-xs text-gray-700">了解不同板块相关性，合理配置资产</p>
+                        </div>
+                        
+                        <div class="p-4 bg-purple-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-purple-800 mb-2 flex items-center text-sm">
+                                <i data-lucide="flag" class="w-4 h-4 mr-1"></i>
+                                政策导向
+                            </h4>
+                            <p class="text-xs text-gray-700">关注国家政策支持的重点板块，把握长期投资方向</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-2">板块轮动规律</h4>
+                        <p class="text-sm text-gray-700 mb-2">不同板块在经济周期的不同阶段表现各异，了解板块轮动规律有助于把握投资时机：</p>
+                        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li><strong>衰退期初期：</strong>防御型板块(必需消费品、医疗保健)表现较好</li>
+                            <li><strong>衰退期末期：</strong>周期性板块(原材料、工业)开始活跃</li>
+                            <li><strong>复苏期：</strong>可选消费品、信息技术板块表现优异</li>
+                            <li><strong>繁荣期：</strong>周期性行业持续上涨，金融板块表现突出</li>
+                            <li><strong>衰退前：</strong>能源、公用事业等后周期板块表现较好</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="framework" class="mb-16">
+            <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 shadow-sm border border-gray-200 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="workflow" class="w-6 h-6 mr-2 text-gray-600"></i>
+                    整合分析框架
+                </h2>
+                
+                <img src="analysis-framework.svg" alt="多层次分析模型" class="w-full max-w-2xl mx-auto mb-8">
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">基本面分析实用工作流</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="relative pl-8">
+                            <div class="absolute left-0 top-0 bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center text-white font-bold text-sm">1</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">初步筛选</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>板块趋势确认</li>
+                                <li>基本财务指标筛选(ROE>15%、负债率<60%等)</li>
+                                <li>建立初选股票池</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute left-0 top-0 bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center text-white font-bold text-sm">2</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">深度分析</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>财务报表全面解读</li>
+                                <li>商业模式与竞争优势评估</li>
+                                <li>管理层与公司治理评价</li>
+                                <li>成长性与风险评估</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute left-0 top-0 bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center text-white font-bold text-sm">3</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">价值评估</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>相对估值法(PE、PB等)</li>
+                                <li>绝对估值法(DCF等)</li>
+                                <li>确定合理价值区间</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute left-0 top-0 bg-gray-800 rounded-full w-6 h-6 flex items-center justify-center text-white font-bold text-sm">4</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">投资决策</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>设定安全边际</li>
+                                <li>确定仓位配置</li>
+                                <li>制定买入卖出策略</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">SWOT分析框架</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-green-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-green-800 mb-2 flex items-center">
+                                <i data-lucide="check" class="w-5 h-5 mr-1"></i>
+                                Strengths (优势)
+                            </h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>市场份额与地位</li>
+                                <li>品牌价值与认可度</li>
+                                <li>技术专利与研发能力</li>
+                                <li>管理团队与公司文化</li>
+                                <li>成本优势</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-orange-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-orange-800 mb-2 flex items-center">
+                                <i data-lucide="x" class="w-5 h-5 mr-1"></i>
+                                Weaknesses (劣势)
+                            </h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>高负债水平</li>
+                                <li>产品线老化</li>
+                                <li>管理问题</li>
+                                <li>资本支出需求</li>
+                                <li>盈利能力不足</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-blue-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-blue-800 mb-2 flex items-center">
+                                <i data-lucide="alert-circle" class="w-5 h-5 mr-1"></i>
+                                Opportunities (机会)
+                            </h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>新兴市场扩张</li>
+                                <li>技术创新趋势</li>
+                                <li>政策支持</li>
+                                <li>行业整合机会</li>
+                                <li>消费习惯变化</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-red-50 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-red-800 mb-2 flex items-center">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 mr-1"></i>
+                                Threats (威胁)
+                            </h4>
+                            <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                <li>竞争加剧</li>
+                                <li>替代产品威胁</li>
+                                <li>监管风险</li>
+                                <li>宏观经济波动</li>
+                                <li>技术变革</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beginners" class="mb-16">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8 shadow-sm border border-blue-100 section-highlight">
+                <h2 class="text-2xl font-bold mb-6 flex items-center text-gray-800">
+                    <i data-lucide="graduation-cap" class="w-6 h-6 mr-2 text-blue-600"></i>
+                    初学者实践指南
+                </h2>
+                
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-800">基本面分析入门步骤</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-lg mr-2">1</div>
+                                <h4 class="font-semibold text-blue-800">打好基础</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>学习基本财务知识</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>熟悉行业分类与特点</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>了解宏观经济影响</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-lg mr-2">2</div>
+                                <h4 class="font-semibold text-blue-800">从简单开始</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>先关注少数几个核心指标(PE、ROE等)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>从熟悉的行业入手</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>挑选优质蓝筹公司练习分析</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-lg mr-2">3</div>
+                                <h4 class="font-semibold text-blue-800">工具应用</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>利用财经网站和App查看基础数据</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>学习阅读上市公司年报</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>关注权威分析师的研报学习方法</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-lg mr-2">4</div>
+                                <h4 class="font-semibold text-blue-800">知识扩展</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>逐步掌握更多财务指标</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>学习行业特定分析方法</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600 mr-1 mt-0.5"></i>
+                                    <span>了解更复杂的估值模型</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-800">推荐资源</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="p-3 border-l-4 border-blue-500 bg-blue-50 rounded-r-lg">
+                                <h4 class="font-semibold text-gray-800 mb-1">入门书籍</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                    <li>《一本书读懂财报》</li>
+                                    <li>《公司基本面分析》</li>
+                                    <li>《聪明的投资者》</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-3 border-l-4 border-green-500 bg-green-50 rounded-r-lg">
+                                <h4 class="font-semibold text-gray-800 mb-1">进阶读物</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                    <li>《证券分析》(格雷厄姆)</li>
+                                    <li>《巴菲特致股东的信》</li>
+                                    <li>《股市真规则》</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-3 border-l-4 border-yellow-500 bg-yellow-50 rounded-r-lg">
+                                <h4 class="font-semibold text-gray-800 mb-1">在线工具</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                    <li>同花顺</li>
+                                    <li>东方财富</li>
+                                    <li>Wind(专业)</li>
+                                    <li>Choice(专业)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-3 border-l-4 border-purple-500 bg-purple-50 rounded-r-lg">
+                                <h4 class="font-semibold text-gray-800 mb-1">学习网站</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                                    <li>投资者教育网站</li>
+                                    <li>证监会官网资料</li>
+                                    <li>财经MOOC课程</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-800">常见误区与注意事项</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-sm">过度依赖单一指标</h4>
+                                    <p class="text-xs text-gray-700 mt-1">综合多指标分析更准确，单一指标可能误导决策</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-sm">忽视行业差异</h4>
+                                    <p class="text-xs text-gray-700 mt-1">不同行业指标标准差异大，同行业比较更有意义</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-sm">忽略宏观环境</h4>
+                                    <p class="text-xs text-gray-700 mt-1">经济周期、政策变化等宏观因素对企业表现影响巨大</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-sm">只看数字不看质</h4>
+                                    <p class="text-xs text-gray-700 mt-1">财务数据背后反映企业质量，需关注经营模式与竞争优势</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-sm">短视决策</h4>
+                                    <p class="text-xs text-gray-700 mt-1">基本面分析适合中长期投资，不应期望短期获利</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-800 text-white rounded-xl p-6 mt-8">
+                    <h3 class="text-xl font-semibold mb-4">投资者的最终提醒</h3>
+                    <p class="mb-4">通过系统学习本指南，初学者可以建立完整的股票基本面分析框架，为投资决策提供坚实基础。</p>
+                    <p class="text-blue-200">记住，基本面分析不是为了追求短期利润，而是为了识别真正有价值的企业进行长期投资。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="mb-6 pb-6 border-b border-gray-800">
+                <h3 class="text-lg font-semibold mb-4">免责声明</h3>
+                <p class="text-gray-400 text-sm">本网站内容仅供教育和参考使用，不构成任何投资建议。投资有风险，入市需谨慎。投资者应根据自身情况做出投资决策，并对自己的投资行为负责。</p>
+            </div>
+            <div class="text-center text-gray-500 text-sm">
+                <p>反关财经<a href="https://flowith.net" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300"> by 不霁何虹</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 当页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有导航链接
+            const navLinks = document.querySelectorAll('nav a');
+            
+            // 每个部分对应的颜色
+            const sectionColors = {
+                'intro': 'rgba(107, 114, 128, 0.7)',    // 灰色
+                'fundamental': 'rgba(59, 130, 246, 0.7)', // 蓝色 
+                'financial': 'rgba(16, 185, 129, 0.7)',  // 绿色
+                'ratios': 'rgba(245, 158, 11, 0.7)',    // 黄色
+                'sectors': 'rgba(168, 85, 247, 0.7)',   // 紫色
+                'framework': 'rgba(99, 102, 241, 0.7)', // 靛蓝色
+                'beginners': 'rgba(6, 182, 212, 0.7)'   // 青色
+            };
+            
+            // 为每个导航链接添加点击事件监听器
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // 获取目标部分的ID
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        // 移除所有部分的活跃状态
+                        document.querySelectorAll('.section-highlight').forEach(section => {
+                            section.classList.remove('active-section');
+                            section.style.removeProperty('--active-color');
+                        });
+                        
+                        // 添加活跃状态到目标部分
+                        const targetDiv = targetSection.querySelector('div');
+                        if (targetDiv) {
+                            // 设置活跃颜色
+                            targetDiv.style.setProperty('--active-color', sectionColors[targetId] || 'rgba(239, 68, 68, 0.7)');
+                            targetDiv.classList.add('active-section');
+                            
+                            // 3秒后移除活跃状态
+                            setTimeout(() => {
+                                targetDiv.classList.remove('active-section');
+                                targetDiv.style.removeProperty('--active-color');
+                            }, 3000);
+                        }
+                    }
+                });
+            });
+            
+            // 检查URL哈希，如果存在，高亮相应部分
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const targetDiv = targetSection.querySelector('div');
+                    if (targetDiv) {
+                        // 设置活跃颜色
+                        targetDiv.style.setProperty('--active-color', sectionColors[targetId] || 'rgba(239, 68, 68, 0.7)');
+                        targetDiv.classList.add('active-section');
+                        
+                        setTimeout(() => {
+                            targetDiv.classList.remove('active-section');
+                            targetDiv.style.removeProperty('--active-color');
+                        }, 3000);
+                    }
+                }
+            }
+            
+            // 在可视区域内检测章节并高亮对应导航项
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        // 移除所有导航链接的活跃状态
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                        });
+                        
+                        // 添加活跃状态到当前导航链接
+                        const currentNavLink = document.querySelector(`nav a[href="#${id}"]`);
+                        if (currentNavLink) {
+                            currentNavLink.classList.add('nav-active');
+                        }
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            // 观察所有章节
+            document.querySelectorAll('section[id]').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
